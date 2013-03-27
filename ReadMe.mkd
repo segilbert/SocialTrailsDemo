@@ -4,7 +4,7 @@ SocialTrails Demo
 Description
 -----------
 
-This is a simple console application seeking to demonstrate how to
+This is a simple console application seeks to demonstrate how to
 
 * Authenticate with Twitter REST API using Spring.NET Application Framework Social Extensions.
 * Use SlowCheetah to do App.config transformations.
