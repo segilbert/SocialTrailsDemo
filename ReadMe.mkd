@@ -62,7 +62,7 @@ To use RavenDb under IIS:
 1. [Host RavenDb in IIS](http://ravendb.net/docs/server/deployment/as-iis-application) 
 2. Create new RavenDb database called SocialTrails, details [here]().
 3. Setup and Configure [RavenDb ApiKey and Windows Authentication Access](http://ravendb.net/docs/2.0/server/authentication) for SocialTrails
-4. Get commit # from demo branch 
+4. Get [commit](https://github.com/segilbert/SocialTrailsDemo/commit/cfd598af51ec500e77f6a8e7e093ca5c239cd37d) from demo branch 
 5. Add the following to App.Debug.config and App.Release.config.
 
 		<connectionStrings>
