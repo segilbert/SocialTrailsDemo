@@ -66,8 +66,8 @@ To use RavenDb under IIS:
 5. Add the following to App.Debug.config and App.Release.config.
 
 		<connectionStrings>
-			<add name="SocialTrailsRavenDb " connectionString="DataDir = ~\App_Data\Database" xdt:Transform="SetAttributes" xdt:Locator="Match(connectionString)" />
-			<add name="RavenDBSecure" connectionString="Url=http://localhost:PORT#/ravendb; ApiKey = MyName/MySecureKey; Database = SocialTrails" xdt:Transform="SetAttributes" xdt:Locator="Match(connectionString)" />
+			<add name="SocialTrailsRavenDb " connectionString="DataDir = ~\App_Data\Database" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
+			<add name="RavenDBSecure" connectionString="Url=http://localhost:PORT#/ravendb; ApiKey = MyName/MySecureKey; Database = SocialTrails" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
 		</connectionStrings>
 		
 Support
