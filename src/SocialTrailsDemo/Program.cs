@@ -5,6 +5,7 @@ using System.Configuration;
 //
 using Raven.Abstractions.Extensions;
 using Raven.Client;
+using Raven.Client.Document;
 using Raven.Client.Embedded;
 using Raven.Database.Server;
 //
@@ -17,19 +18,39 @@ namespace SocialTrailsDemo
     {
         static void Main(string[] args)
         {
-            Run();
-        }
-
-
-        static private void Run()
-        {
             string consumerKey = ConfigurationManager.AppSettings["twitterConsumerKey"]; // The application's consumer key
             string consumerSecret = ConfigurationManager.AppSettings["twitterConsumerSecret"]; // The application's consumer secret
             string accessToken = ConfigurationManager.AppSettings["twitterOAuthAccessToken"]; // The access token granted after OAuth authorization
             string accessTokenSecret = ConfigurationManager.AppSettings["twitterOAuthAccessTokenSecret"]; // The access token secret granted after OAuth authorization
 
+            string twitterHandle = "frozenbytes";
+
             ITwitter twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 
+            //RunRavenEmbedded(twitter, twitterHandle);
+            RunRavenIIS(twitter, twitterHandle);
+        }
+
+        private static void RunRavenIIS(ITwitter ctx, string twitterHandle)
+        {
+            using (var store = new DocumentStore   
+            {
+                ConnectionStringName = ConfigurationManager.ConnectionStrings["RavenDbSocialTrailsSecure"].Name
+            })
+            {
+                store.Initialize();
+                Console.Write("RavenDb Embedded Document Store Initialized Successfully.");
+
+                PerformInitialTimelineLoad(store, ctx, twitterHandle);
+
+                Console.ReadKey();
+            }
+        }
+
+
+        static private void RunRavenEmbedded(ITwitter ctx, string twitterHandle)
+        {
+           
             using (var store = new EmbeddableDocumentStore
             {
                 DataDirectory = "~/App_Data/Database",
@@ -43,7 +64,7 @@ namespace SocialTrailsDemo
 
                 Console.Write("RavenDb Embedded Document Store Initialized Successfully.");
 
-                PerformInitialTimelineLoad(store, twitter, "frozenbytes");
+                PerformInitialTimelineLoad(store, ctx, twitterHandle);
 
                 Console.ReadKey();
             }
