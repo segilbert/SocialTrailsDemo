@@ -4,15 +4,16 @@ SocialTrails Demo
 Description
 -----------
 
-This is a simple console application seeks to demonstrate how to
+This is a simple console application seeks to demonstrate how to 
 
 * Authenticate with Twitter REST API using Spring.NET Application Framework Social Extensions.
 * Use SlowCheetah to do App.config transformations.
 * Setup RavenDb Embedded for data storage.
 * Leverage Spring.NET Application Framework Social Twitter Extensions to simply and quickly pull tweets in chunks of 200 and persisting the data in RavenDB.
 
+This is based on [blog]().
 
-Assumptions:
+Assumptions
 -------
 
 * Familar with VS 2012
@@ -21,7 +22,7 @@ Assumptions:
 * Own a Twitter Account or can create a twitter account
 * Using Locally Hosted RavenDB in IIS or Embeded mode
 
-Requirements:
+Requirements
 -------
 
 * VisualStudio 2012 +
@@ -32,6 +33,29 @@ Requirements:
 * Twitter Account
 * Twitter Application Tokens ( will generate )
 
+Demo Branch
+-------
+
+The demo branch contains individual commits, each introducing more functionality of the system.  You can pull down the entire demo branch or take master and walk through the [blog]() 
+while comparing to the demo branch changes.
+
+Important note: to get the App.Config transforms to work you will need to do the following:
+
+1. Open VS 2012
+2. Install Visual Studio Extension [SlowCheetah - XML Transforms](http://t.co/rtZChVnr0o) 
+3. Requires a VS 2012 restart
+4. Open SocialTrailsDemo
+5. Right click on App.config
+6. Select "Add Transform" menu item to create a Debug and Release transform for the App.config file.
+7. Add the below code to App.Debug.config and App.Release.config files.
+8. Add the twitter keys as necessary for authentication.
+
+		<appSettings>
+			<add key="twitterConsumerKey" value="AddKey" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>  
+			<add key="twitterConsumerSecret" value="AddSecret" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+			<add key="twitterOAuthAccessToken" value="AddToken" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+			<add key="twitterOAuthAccessTokenSecret" value="AddTokenSecret" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+		</appSettings>
 
 Support
 -------
