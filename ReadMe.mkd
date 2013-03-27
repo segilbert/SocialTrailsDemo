@@ -51,10 +51,22 @@ Important -> to get the App.Config transforms to work follow steps outlined belo
 8. Add the twitter keys as necessary for authentication.
 
 		<appSettings>
-			<add key="twitterConsumerKey" value="AddKey" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>  
-			<add key="twitterConsumerSecret" value="AddSecret" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-			<add key="twitterOAuthAccessToken" value="AddToken" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
-			<add key="twitterOAuthAccessTokenSecret" value="AddTokenSecret" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+			<add 	key="twitterConsumerKey" 
+					value="AddKey" 
+					xdt:Transform="SetAttributes" 
+					xdt:Locator="Match(key)"/>  
+			<add 	key="twitterConsumerSecret" 
+					value="AddSecret" 
+					xdt:Transform="SetAttributes" 
+					xdt:Locator="Match(key)"/>
+			<add 	key="twitterOAuthAccessToken" 
+					value="AddToken" 
+					xdt:Transform="SetAttributes" 
+					xdt:Locator="Match(key)"/>
+			<add 	key="twitterOAuthAccessTokenSecret" 
+					value="AddTokenSecret" 
+					xdt:Transform="SetAttributes" 
+					xdt:Locator="Match(key)"/>
 		</appSettings>
 
 To use RavenDb under IIS:
@@ -66,8 +78,14 @@ To use RavenDb under IIS:
 5. Add the following to App.Debug.config and App.Release.config.
 
 		<connectionStrings>
-			<add name="SocialTrailsRavenDb " connectionString="DataDir = ~\App_Data\Database" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
-			<add name="RavenDBSecure" connectionString="Url=http://localhost:PORT#/ravendb; ApiKey = MyName/MySecureKey; Database = SocialTrails" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
+			<add 	name="SocialTrailsRavenDb" 
+					connectionString="DataDir=~\App_Data\Database" 
+					xdt:Transform="SetAttributes" 
+					xdt:Locator="Match(name)" />
+			<add 	name="RavenDBSecure" 
+					connectionString="Url=http://localhost:PORT#/ravendb; ApiKey=MyName/MySecureKey; Database=SocialTrails" 
+					xdt:Transform="SetAttributes" 
+					xdt:Locator="Match(name)" />
 		</connectionStrings>
 		
 Support
