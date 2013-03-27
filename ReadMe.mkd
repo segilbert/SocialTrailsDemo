@@ -57,6 +57,19 @@ Important -> to get the App.Config transforms to work follow steps outlined belo
 			<add key="twitterOAuthAccessTokenSecret" value="AddTokenSecret" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
 		</appSettings>
 
+To use RavenDb under IIS:
+
+1. [Host RavenDb in IIS](http://ravendb.net/docs/server/deployment/as-iis-application) 
+2. Create new RavenDb database called SocialTrails, details [here]().
+3. Setup and Configure [RavenDb ApiKey and Windows Authentication Access](http://ravendb.net/docs/2.0/server/authentication) for SocialTrails
+4. Get commit # from demo branch 
+5. Add the following to App.Debug.config and App.Release.config.
+
+		<connectionStrings>
+			<add name="SocialTrailsRavenDb " connectionString="DataDir = ~\App_Data\Database" xdt:Transform="SetAttributes" xdt:Locator="Match(connectionString)" />
+			<add name="RavenDBSecure" connectionString="Url=http://localhost:PORT#/ravendb; ApiKey = MyName/MySecureKey; Database = SocialTrails" xdt:Transform="SetAttributes" xdt:Locator="Match(connectionString)" />
+		</connectionStrings>
+		
 Support
 -------
 
