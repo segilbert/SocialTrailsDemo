@@ -2,6 +2,9 @@
 using System;
 using System.Configuration;
 //
+using Raven.Client.Embedded;
+using Raven.Database.Server;
+//
 using Spring.Social.Twitter.Api;
 using Spring.Social.Twitter.Api.Impl;
 
@@ -24,8 +27,21 @@ namespace SocialTrailsDemo
 
             ITwitter twitter = new TwitterTemplate(consumerKey, consumerSecret, accessToken, accessTokenSecret);
 
-            Console.WriteLine("Authenticated against Twitter Rest API using Spring.Net Application Framework Social Twitter Extensions.");
-            Console.ReadKey();
+            using (var store = new EmbeddableDocumentStore
+            {
+                DataDirectory = "~/App_Data/Database",
+                RunInMemory = true,
+                UseEmbeddedHttpServer = true,
+            })
+            {
+                NonAdminHttp.EnsureCanListenToWhenInNonAdminContext(9090);
+                store.Initialize();
+                store.HttpServer.SystemConfiguration.AllowLocalAccessWithoutAuthorization = true;
+
+                Console.Write("RavenDb Embedded Document Store Initialized Successfully.");
+
+                Console.ReadKey();
+            }
         }
 
 
