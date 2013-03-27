@@ -51,11 +51,18 @@ namespace SocialTrailsDemo
 
         private static void PerformInitialTimelineLoad(IDocumentStore store, ITwitter ctx, string psScreenName)
         {
-            IList<Tweet> tweets = GetUserTimeLine(ctx, psScreenName);
+            using (IDocumentSession s = store.OpenSession())
+            {
+                IList<Tweet> tweets = GetUserTimeLine(ctx, psScreenName);
 
-            foreach (var tweet in tweets)
-                Console.WriteLine("{0} - Message -> {1}", tweet.User.ScreenName, tweet.Text);
-               
+                foreach (var tweet in tweets)
+                {
+                    Console.WriteLine("{0} - Message -> {1}", tweet.User.ScreenName, tweet.Text);
+                    s.Store(tweet);
+                }
+
+                s.SaveChanges();
+            }
         }
 
         private static IList<Tweet> GetUserTimeLine(ITwitter pxTwitterCtx, string psScreenName)
