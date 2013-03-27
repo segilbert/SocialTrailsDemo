@@ -1,0 +1,44 @@
+SocialTrails Demo
+============================
+
+Description
+-----------
+
+This is a simple console application seeks to demonstrate how to
+
+* Authenticate with Twitter REST API using Spring.NET Application Framework Social Extensions.
+* Use SlowCheetah to do App.config transformations.
+* Setup RavenDb Embedded for data storage.
+* Leverage Spring.NET Application Framework Social Twitter Extensions to simply and quickly pull tweets in chunks of 200 and persisting the data in RavenDB.
+
+
+Assumptions:
+-------
+
+* Familar with VS 2012
+* Familar Nuget Package Manager Console
+* Familar with Twitter
+* Own a Twitter Account or can create a twitter account
+* Using Locally Hosted RavenDB in IIS or Embeded mode
+
+Requirements:
+-------
+
+* VisualStudio 2012 +
+* NuGet
+* Spring.NET Social Twitter Extensions
+* RavenDb
+* Visual Studio Extension [SlowCheetah - XML Transforms](http://t.co/rtZChVnr0o)
+* Twitter Account
+* Twitter Application Tokens ( will generate )
+
+
+Support
+-------
+
+Create an issue here on GitHub, send me a message or fork the project and send me a pull request.
+
+Open Source License
+-------------------
+
+Glimpse for StructureMap is free software distributed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
