@@ -40,6 +40,7 @@ The demo branch contains individual commits, each introducing more functionality
 while comparing to the demo branch changes.
 
 Important note: to get the App.Config transforms to work you will need to do the following:
+
 1. Open VS 2012
 2. Install Visual Studio Extension [SlowCheetah - XML Transforms](http://t.co/rtZChVnr0o) 
 3. Requires a VS 2012 restart
