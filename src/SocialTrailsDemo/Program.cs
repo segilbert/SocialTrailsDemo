@@ -1,7 +1,10 @@
 ﻿//
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 //
+using Raven.Abstractions.Extensions;
+using Raven.Client;
 using Raven.Client.Embedded;
 using Raven.Database.Server;
 //
@@ -40,10 +43,38 @@ namespace SocialTrailsDemo
 
                 Console.Write("RavenDb Embedded Document Store Initialized Successfully.");
 
+                PerformInitialTimelineLoad(store, twitter, "frozenbytes");
+
                 Console.ReadKey();
             }
         }
 
+        private static void PerformInitialTimelineLoad(IDocumentStore store, ITwitter ctx, string psScreenName)
+        {
+            IList<Tweet> tweets = GetUserTimeLine(ctx, psScreenName);
+
+            foreach (var tweet in tweets)
+                Console.WriteLine("{0} - Message -> {1}", tweet.User.ScreenName, tweet.Text);
+               
+        }
+
+        private static IList<Tweet> GetUserTimeLine(ITwitter pxTwitterCtx, string psScreenName)
+        {
+            ulong statusesCount = 1400;
+            int i = Convert.ToInt32(statusesCount);
+
+            IList<Tweet> twits = new List<Tweet>();
+
+            while (i > 0)
+            {
+                // sinceId and maxId
+                var task = pxTwitterCtx.TimelineOperations.GetUserTimelineAsync(psScreenName, 200);
+                twits.AddRange(task.Result);
+                i = i - 200;
+            }
+
+            return twits;
+        }
 
     }
 }
